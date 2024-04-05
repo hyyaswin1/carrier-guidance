@@ -156,7 +156,6 @@
         <label for="qualification">Qualification Level:</label>
         <select id="qualification" name="qualification" onchange="showHigherStudies()">
             <option value="">Select</option>
-            <option value="SSLC">SSLC</option>
             <option value="HIGHER SECONDARY">HIGHER SECONDARY</option>
             <option value="DIPLOMA">DIPLOMA</option>
             <option value="Master's Degree">Master's Degree</option>
@@ -182,7 +181,6 @@
 
             // Populate options based on selected qualification
             if (qualification === "SSLC") {
-                higherStudiesSelect.innerHTML += '<option value="12th">12th Standard</option>';
                 higherStudiesSelect.innerHTML += '<option value="Diploma">Diploma</option>';
             } else if (qualification === "HIGHER SECONDARY") {
                 higherStudiesSelect.innerHTML += '<option value="Bachelor">Bachelor Degree</option>';
@@ -242,8 +240,8 @@
                     option.text = subject;
                     subjectsSelect.add(option);
                 });
-            } else if (course === "PhD") {
-                var subjects = ["Computer Science Research", "Electrical Engineering Research", "Mechanical Engineering Research", "Civil Engineering Research", "Chemical Engineering Research"];
+            } else if (course === "DIPLOMA") {
+                var subjects = ["Computer H", "Electrical Engineering Research", "Mechanical Engineering Research", "Civil Engineering Research", "Chemical Engineering Research"];
                 subjects.forEach(function(subject) {
                     var option = document.createElement("option");
                     option.text = subject;
