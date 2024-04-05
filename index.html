@@ -179,10 +179,7 @@
             var higherStudiesSelect = document.getElementById("higherStudies");
             higherStudiesSelect.innerHTML = '<option value="">Select</option>';
 
-            // Populate options based on selected qualification
-            if (qualification === "SSLC") {
-                higherStudiesSelect.innerHTML += '<option value="Diploma">Diploma</option>';
-            } else if (qualification === "HIGHER SECONDARY") {
+           
                 higherStudiesSelect.innerHTML += '<option value="Bachelor">Bachelor Degree</option>';
             } else if (qualification === "DIPLOMA") {
                 higherStudiesSelect.innerHTML += '<option value="Bachelor">Bachelor Degree</option>';
@@ -212,7 +209,7 @@
         <select id="course" name="course" onchange="showSubjects()">
             <option value="">Select</option>
             <option value="Bachelor Degree">Bachelor Degree</option>
-            <option value="PhD">PhD</option>
+            <option value="DIPLOMA">DIPLOMA</option>
         </select>
         <div id="subjectsSection" style="display: none;">
             <label for="subjects">Select Subjects:</label>
@@ -241,7 +238,7 @@
                     subjectsSelect.add(option);
                 });
             } else if (course === "DIPLOMA") {
-                var subjects = ["Computer H", "Electrical Engineering Research", "Mechanical Engineering Research", "Civil Engineering Research", "Chemical Engineering Research"];
+                var subjects = ["Computer Hardware Engineering", "Electrical & Eloctronics Engineering ", "Mechanical Engineering", "Civil Engineering",];
                 subjects.forEach(function(subject) {
                     var option = document.createElement("option");
                     option.text = subject;
