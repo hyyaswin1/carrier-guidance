@@ -3,78 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Career Guidance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .step {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Career Guidance</h1>
+    </header>
     <div class="container">
-        <h2>Login</h2>
-        <form action="process_login.php" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <input type="submit" value="Login">
-        </form>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qualification Level</title>
-</head>
-<body>
-    <h2>Select Your Qualification Level</h2>
-    <form action="process_qualification.php" method="post">
-        <label for="qualification">Qualification Level:</label>
-        <select id="qualification" name="qualification">
-            <option value="">Select</option>
-            <option value="HIGHER SECONDARY">HIGHER SECONDARY</option>
-            <option value="DIPLOMA">DIPLOMA</option>
-            <option value="Master's Degree">Master's Degree</option>
-            <option value="Other">Other</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process login here, for demonstration purposes, let's just redirect to qualification.php
-    header("Location: qualification.php");
-    exit;
-}
-?>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process qualification here, for demonstration purposes, let's just redirect to next step (course.php)
-    header("Location: course.php");
-    exit;
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Branches/Subjects</title>
-</head>
-<body>
-    <h2>Select Course Branches/Subjects</h2>
-    <form action="process_course.php" method="post" id="subjectForm">
-        <label for="course">Select Course:</label>
-        <select id="course" name="course" onchange="showSubjects()">
-            <option value="">Select</option>
-            <option value="Bachelor Degree">Bachelor Degree</option>
-            <option value="DIPLOMA">DIPLOMA</option>
-        </select>
-        <div id="subjectsSection" style="display: none;">
-            <label for="subjects">Select Subjects:</label>
-            <select id="subjects" name="subjects" multiple>
-                <!-- Options will be added dynamically using JavaScript -->
-            </select>
+        <div class="step" id="step1">
+            <p>Welcome to our career guidance page! Whether you're just starting out or looking to change careers, we're here to help you navigate your professional journey.</p>
+            <p>Ready to get started?</p>
+            <button class="btn" onclick="nextStep()">Start</button>
         </div>
-        <input type="submit" value="Submit">
-    </form>
+        <div class="step" id="step2">
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="return false;">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <button class="btn" onclick="nextStep()">Next</button>
+            </form>
+        </div>
+        <div class="step" id="step3">
+            <h2>Select Your Qualification Level</h2>
+            <form id="qualificationForm" onsubmit="return false;">
+                <label for="qualification">Qualification Level:</label>
+                <select id="qualification" name="qualification">
+                    <option value="">Select</option>
+                    <option value="SSLC">SSLC</option>
+                    <option value="HIGHER SECONDARY">HIGHER SECONDARY</option>
+                    <option value="DIPLOMA">DIPLOMA</option>
+                    <option value="master">Master's Degree</option>
+                    <option value="other">Other</option>
+                </select>
+                <button class="btn" onclick="nextStep()">Next</button>
+            </form>
+        </div>
+        <div class="step" id="step4">
+            <h2>Select Course Branches/Subjects</h2>
+            <form id="subjectForm" onsubmit="return false;">
+                <label for="course">Select Course:</label>
+                <select id="course" name="course">
+                    <option value="">Select</option>
+                    <option value="Bachelor Degree">Bachelor Degree</option>
+                    <option value="DIPLOMA">DIPLOMA</option>
+                </select>
+                <button class="btn" onclick="nextStep()">Submit</button>
+            </form>
+        </div>
+        <div class="step" id="step5">
+            <h2>Thank You!</h2>
+            <p>Your details have been submitted successfully.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                document.getElementById(`step${currentStep}`).style.display = "none";
+                currentStep++;
+                document.getElementById(`step${currentStep}`).style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
